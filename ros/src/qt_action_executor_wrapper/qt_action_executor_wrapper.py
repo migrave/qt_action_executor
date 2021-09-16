@@ -38,6 +38,7 @@ class QtActionExecutorWrapper(object):
 
             self.speech_pub.publish(sentence)
             self.gesture_pub.publish('QT/{}'.format(gesture))
+            rospy.sleep(1)
             self.face_expression_pub.publish('QT/{}'.format(face_expression))
             
             self.current_robot_action = None
