@@ -46,7 +46,7 @@ class QtActionExecutorWrapper(object):
     def robot_action_cb(self, robot_action_msg: RobotAction) -> None:
         if not self.current_robot_action:
             self.current_robot_action = robot_action_msg
-            rospy.loginfo('Received action: \n {}'.format(self.current_robot_action.action_name))
+            rospy.loginfo('Received action: {}'.format(self.current_robot_action.action_name))
         
         else:
             rospy.logwarn('Received action {}, but the previous one is still being executed. Ignoring ...'.
