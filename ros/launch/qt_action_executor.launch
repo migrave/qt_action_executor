@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     <node pkg="qt_action_executor" type="qt_action_executor" name="qt_action_executor" output="screen">
-        <param name="action_topic" type="str" value="/robot_action" />
+        <param name="action_topic" type="str" value="/migrave_behaviour_manager/robot_action" />
         <param name="speech_topic" type="str" value="/qt_robot/behavior/talkText" />
         <param name="gesture_topic" type="str" value="/qt_robot/gesture/play" />
         <param name="face_expression_topic" type="str" value="/qt_robot/emotion/show" />

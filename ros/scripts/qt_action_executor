@@ -8,6 +8,6 @@ if __name__ == '__main__':
     try:
         while not rospy.is_shutdown():
             qt_action_executor.act()
-            rospy.sleep(5)
+            rospy.sleep(0.05)
     except rospy.ROSInterruptException as exc:
         print('qt_action_executor ...')
