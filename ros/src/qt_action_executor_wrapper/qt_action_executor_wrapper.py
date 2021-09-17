@@ -10,6 +10,7 @@ class QtActionExecutorWrapper(object):
         gesture_topic = rospy.get_param('~gesture_topic', '/qt_robot/emotion/show')
         face_expression_topic = rospy.get_param('~face_expression_topic', '/qt_robot/gesture/play')        
         action_topic = rospy.get_param('~action_topic', '/migrave_behaviour_manager/robot_action')
+        feedback_topic = rospy.get_param('~feedback_topic', '/qt_action_executor/action_feedback')
 
         self.current_robot_action = None
         
@@ -18,10 +19,15 @@ class QtActionExecutorWrapper(object):
                                           RobotAction,
                                           self.robot_action_cb)
 
+        
+        
         # Publishers for low level actions
         self.speech_pub = rospy.Publisher(speech_topic, String, queue_size=1)
         self.gesture_pub = rospy.Publisher(gesture_topic, String, queue_size=1)
         self.face_expression_pub = rospy.Publisher(face_expression_topic, String, queue_size=1)
+
+        # Publisher for feedback
+        self.feedback_pub = rospy.Publisher(feedback_topic, String, queue_size=1)
 
         self.qt_action_executor = QtActionExecutor()
 
@@ -41,6 +47,7 @@ class QtActionExecutorWrapper(object):
             rospy.sleep(3)
             self.face_expression_pub.publish('QT/{}'.format(face_expression))
             rospy.sleep(7)
+            self.feedback_pub.publish('finished') 
             
             self.current_robot_action = None
 
